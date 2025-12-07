@@ -1,0 +1,11 @@
+out/
+node_modules/
+*.vsix
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

@@ -1,0 +1,78 @@
+{
+  "name": "vscode-claude-usage",
+  "displayName": "Claude Usage Monitor",
+  "description": "Display Claude API usage in the status bar",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "Nanase",
+  "main": "./out/extension.js",
+  "packageManager": "yarn@4.12.0",
+  "engines": {
+    "vscode": "^1.106.1",
+    "npm": "use yarn instead",
+    "yarn": "4.12.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "claude-usage.setupCredentials",
+        "title": "Claude Usage: Setup Credentials"
+      },
+      {
+        "command": "claude-usage.refresh",
+        "title": "Claude Usage: Refresh Usage"
+      },
+      {
+        "command": "claude-usage.clearCredentials",
+        "title": "Claude Usage: Clear Credentials"
+      }
+    ],
+    "configuration": {
+      "title": "Claude Usage Monitor",
+      "properties": {
+        "claudeUsage.refreshInterval": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "description": "Refresh interval in minutes"
+        },
+        "claudeUsage.refreshOnlyWhenFocused": {
+          "type": "boolean",
+          "default": true,
+          "description": "Only auto-refresh when the window is focused (reduces duplicate API calls when multiple windows are open)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "watch": "tsc -watch -p ./tsconfig.build.json",
+    "lint": "biome check --write .",
+    "lint:check": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "package": "tsc -p ./tsconfig.build.json && vsce package --no-dependencies",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.106.1",
+    "@vscode/vsce": "^3.7.1",
+    "husky": "^9.1.7",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  }
+}
